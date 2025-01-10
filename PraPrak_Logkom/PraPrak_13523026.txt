@@ -1,0 +1,79 @@
+BAGIAN 1
+
+1. Suami dari aihoshino
+Query: | ?- menikah(aihoshino,X).
+
+no
+
+
+2. Kakek buyut dan nenek buyut dari eve
+Query: | ?- keturunan(eve,X).
+
+X = qika ? ;
+
+X = makio ? ;
+
+no
+
+
+3. Paman dari orang tua francesco
+Query: | ?- saudara(X,anak(francesco,Y)).
+
+no
+
+
+4. Orang yang memiliki lebih dari satu istri
+Query: | ?- findall(X,(menikah(X,Y),pria(X)), Result).
+
+Result = [qika,qika,qika,panji,barok,eriq,francesco]
+
+yes
+
+
+5. Saudara tiri tertua dari shelby
+Query: | ?- findall(X,(saudaratiri(shelby,X),\+ (saudaratiri(shelby,Y),usia(X,W),usia(Y,V),W<V)),Result).
+
+Result = [barok]
+
+yes
+
+
+6. Orang tua yang memiliki tepat satu anak
+Query: | ?- findall(Y,(anak(X,Y),\+ (anak(W,Y),X\=W)),Result).
+
+Result = [makio,barok,roxy,ruby,eriq,suzy,francesco]
+
+yes
+
+
+7. Pria yang memiliki mertua berusia lebih dari 99 tahun
+Query: | ?- findall(X,(pria(X),mertua(Y,X),usia(Y,W),W>99),Result).
+
+Result = [eriq]
+
+yes
+
+
+8. Orang yatim piatu dengan usia termuda
+Query: | ?- findall(X,(yatimpiatu(X),\+ (yatimpiatu(Y),usia(X,W),usia(Y,V),W>V)),Result).
+
+Result = [francesco]
+
+yes
+
+
+9. Orang diatas 60 tahun yang statusnya menikah dengan orang yang memiliki saudara lebih dari 1 orang
+Query: | ?- findall(X,(usia(X,Y),menikah(X,Z),saudara(Z,W),saudara(Z,V),W\=V,X\=Z,X\=V,X\=W),Result).
+
+Result = [roxy,roxy]
+
+yes
+
+
+10. Seluruh keturunan qika yang memiliki tepat 2 keponakan
+Query: | ?- findall(X,(keturunan(X,qika),keponakan(X,Y),keponakan(X,W),Y\=W),Results).
+
+Results = []
+
+yes
+
